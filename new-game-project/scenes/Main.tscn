@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/Player.tscn" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://bus4llpmjeqsd" path="res://scripts/main.gd" id="1_nxtc6"]
+[ext_resource type="Texture2D" uid="uid://cmj7d7uo7d0j2" path="res://assets/space3.jpg" id="1_rvslj"]
+[ext_resource type="Script" uid="uid://y4a024w1ntut" path="res://scripts/enemy_spawner.gd" id="3_0bbpv"]
+[ext_resource type="PackedScene" uid="uid://ugsr161uo3s6" path="res://scenes/Enemy.tscn" id="4_rarhs"]
+[ext_resource type="Script" uid="uid://clmohntu1660l" path="res://scripts/hud.gd" id="5_c01mt"]
+[ext_resource type="Texture2D" uid="uid://fshqt66wmb1q" path="res://assets/heart_pix.png" id="5_vcsgt"]
+
+[node name="Main" type="Node2D" unique_id=1082056682]
+script = ExtResource("1_nxtc6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=942109906]
+position = Vector2(366, 588.00006)
+scale = Vector2(1.012, 0.911)
+texture = ExtResource("1_rvslj")
+
+[node name="Bullets" type="Node2D" parent="." unique_id=1999679057]
+
+[node name="Player" parent="." unique_id=774599356 instance=ExtResource("1_elqb8")]
+position = Vector2(358, 942)
+scale = Vector2(0.5, 0.5)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=706429976]
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=663604640]
+script = ExtResource("3_0bbpv")
+enemy_scene = ExtResource("4_rarhs")
+
+[node name="Timer" type="Timer" parent="EnemySpawner" unique_id=1222067628]
+wait_time = 2.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1984244855]
+script = ExtResource("5_c01mt")
+
+[node name="Hearts" type="HBoxContainer" parent="HUD" unique_id=703357924]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+theme_override_constants/separation = 8
+
+[node name="Heart1" type="TextureRect" parent="HUD/Hearts" unique_id=1777815516]
+layout_mode = 2
+texture = ExtResource("5_vcsgt")
+
+[node name="Heart2" type="TextureRect" parent="HUD/Hearts" unique_id=378896789]
+layout_mode = 2
+texture = ExtResource("5_vcsgt")
+
+[node name="Heart3" type="TextureRect" parent="HUD/Hearts" unique_id=1027242320]
+layout_mode = 2
+texture = ExtResource("5_vcsgt")
+
+[node name="GameoverOverlay" type="Control" parent="HUD" unique_id=171824858]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_right = 18.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackBackground" type="ColorRect" parent="HUD/GameoverOverlay" unique_id=566459736]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GameoverLabel" type="Label" parent="HUD/GameoverOverlay" unique_id=2015064226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="HUD" unique_id=723549492]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "SCORE: 0"

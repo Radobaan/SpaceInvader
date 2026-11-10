@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ugsr161uo3s6"]
+
+[ext_resource type="Texture2D" uid="uid://ukflal6yy3ne" path="res://assets/alien1.png" id="1_3gvst"]
+[ext_resource type="Script" uid="uid://cfbru00h5fqji" path="res://scripts/enemy.gd" id="1_55jtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lvs3"]
+size = Vector2(41, 32.5)
+
+[node name="Enemy" type="Area2D" unique_id=286123931 groups=["enemies"]]
+script = ExtResource("1_55jtl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1915058251]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_3gvst")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2010941042]
+position = Vector2(-9.536743e-07, 0.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_6lvs3")
