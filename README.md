@@ -3,7 +3,7 @@
 A 2D Space Invader-style game developed using Godot Engine.
 
 ## Version
-v1.0.0
+v0.1.0
 
 ## Features
 - Player movement
