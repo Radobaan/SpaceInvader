@@ -8,6 +8,20 @@
 [ext_resource type="Script" uid="uid://clmohntu1660l" path="res://scripts/hud.gd" id="5_c01mt"]
 [ext_resource type="Texture2D" uid="uid://fshqt66wmb1q" path="res://assets/heart_pix.png" id="5_vcsgt"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxtc6"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jlsqs"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+
 [node name="Main" type="Node2D" unique_id=1082056682]
 script = ExtResource("1_nxtc6")
 
@@ -21,6 +35,7 @@ texture = ExtResource("1_rvslj")
 [node name="Player" parent="." unique_id=774599356 instance=ExtResource("1_elqb8")]
 position = Vector2(358, 942)
 scale = Vector2(0.5, 0.5)
+fire_interval = 0.5
 
 [node name="Enemies" type="Node2D" parent="." unique_id=706429976]
 
@@ -85,6 +100,26 @@ theme_override_font_sizes/font_size = 64
 text = "GAME OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="HUD/GameoverOverlay" unique_id=188819763]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 670.0
+offset_right = 485.0
+offset_bottom = 706.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_nxtc6")
+text = "RESTART GAME"
+
+[node name="MainMenuButton" type="Button" parent="HUD/GameoverOverlay" unique_id=1044574478]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 740.0
+offset_right = 485.0
+offset_bottom = 776.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_jlsqs")
+text = "BACK TO MENU"
 
 [node name="Score" type="Label" parent="HUD" unique_id=723549492]
 anchors_preset = 1
