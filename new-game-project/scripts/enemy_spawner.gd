@@ -8,16 +8,16 @@ extends Node2D
 
 # Progressive Difficulty configuration
 #sbg variable divider utk menaikkan difficulty ke stage selanjutnya
-@export var difficulty_step_seconds: float = 30.0
+@export var difficulty_step_seconds: float = 10.0
 #variable yg mengatur stat musuh
 @export var base_enemy_speed: float = 150.0
 @export var enemy_speed_increase: float = 30.0
-@export var max_enemy_speed: float = 270.0
+@export var max_enemy_speed: float = 3000.0
 
 #multiplier utk mengurangi waktu jeda spawn tiap musuh
-@export var spawn_interval_decrease: float = 0.3
+@export var spawn_interval_decrease: float = 0.5
 #batas minimum jeda spawn supaya spawn interval tidak terlalu kecil
-@export var min_spawn_interval: float = 0.9
+@export var min_spawn_interval: float = 0.0
 
 # Runtime variables
 var elapsed_time: float = 0.0
@@ -41,6 +41,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	elapsed_time += delta
+	update_difficulty()
+
 	
 func update_difficulty() -> void:
 # Menghitung difficulty berdasarkan waktu bermain.
@@ -52,6 +54,7 @@ func update_difficulty() -> void:
 	else:
 		#naikkan level skrg berdasarkan perhitungan waktu berlalu/diff spike per sconds
 		difficulty_level = new_level
+		print("difficulty level naik jadi: ", difficulty_level)
 
 	# Menghitung kecepatan Enemy terbaru
 	# minf utk mencari nilai terkecil di antara dua angka bertipe float
@@ -62,13 +65,16 @@ func update_difficulty() -> void:
 	)
 
 	# Menghitung spawn interval terbaru
-	current_spawn_interval = minf(
+	current_spawn_interval = maxf(
 		spawn_interval - difficulty_level * spawn_interval_decrease,
 		min_spawn_interval
 	)
+	print("Elapsed Time ", elapsed_time)
+	print("Spawn Interval ", current_spawn_interval)
+	print("Enemy Speed ", current_enemy_speed)
 
 func spawn_enemy() -> void:
-	print("spawn_enemy() TERPANGGIL!")
+	#print("spawn_enemy() TERPANGGIL!")
 
 	# safety check supaya isi enemy_scene tidak kosong
 	if enemy_scene == null:

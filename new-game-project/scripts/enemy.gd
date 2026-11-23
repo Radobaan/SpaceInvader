@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 func take_damage(amount: int = 1) -> void:
 	currentHP -= amount
 
-	print("Enemy HP: ", currentHP)
+	#print("Enemy HP: ", currentHP)
 
 	if currentHP <= 0:
 		die()

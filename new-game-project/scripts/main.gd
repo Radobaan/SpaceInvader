@@ -21,7 +21,7 @@ func _on_enemy_killed() -> void:
 
 	score_label.text = "SCORE: %d" % score
 
-	print("Score: ", score)
+	#print("Score: ", score)
 
 func _on_player_game_over() -> void:
 	print("Main: Game Over Screen ditampilkan!")
