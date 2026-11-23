@@ -15,7 +15,7 @@ func _ready() -> void:
 	restart_button.pressed.connect(_on_restart_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
 	
-
+#tiap musuh mati, skor +=100, dan ganti teks Skor
 func _on_enemy_killed() -> void:
 	score += 100
 

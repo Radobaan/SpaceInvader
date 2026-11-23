@@ -4,9 +4,8 @@ var currentHP: int = 3
 
 @export var speed: float = 150
 
+# sebuah literal sinyal yg diluncurkan/emit saat musuh mati dlm func die()
 signal killed
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,5 +38,6 @@ func take_damage(amount: int = 1) -> void:
 
 
 func die() -> void:
+	# melempar signal yg dideclare di atas sehingga bisa ditangkap oleh GDscript manapun (lihat enemy_spawner.gd)
 	killed.emit()
 	queue_free()
