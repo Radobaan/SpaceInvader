@@ -8,10 +8,10 @@ extends Node2D
 
 # Progressive Difficulty configuration
 #sbg variable divider utk menaikkan difficulty ke stage selanjutnya
-@export var difficulty_step_seconds: float = 10.0
+@export var difficulty_step_seconds: float = 5.0
 #variable yg mengatur stat musuh
 @export var base_enemy_speed: float = 150.0
-@export var enemy_speed_increase: float = 30.0
+@export var enemy_speed_increase: float = 100.0
 @export var max_enemy_speed: float = 3000.0
 
 #multiplier utk mengurangi waktu jeda spawn tiap musuh
@@ -32,7 +32,9 @@ func _ready() -> void:
 	current_enemy_speed = base_enemy_speed
 	current_spawn_interval = spawn_interval
 	
-	$Timer.wait_time = current_spawn_interval
+	#$Timer.wait_time = current_spawn_interval
+	# Memperbarui Timer dengan interval terbaru.
+	$Timer.start(current_spawn_interval)
 	print("Difficulty Level: ", difficulty_level)
 	print("Enemy Speed: ", current_enemy_speed)
 	print("Spawn Interval: ", current_spawn_interval)
@@ -88,8 +90,7 @@ func spawn_enemy() -> void:
 	var main = get_tree().current_scene
 	# Saat sinyal killed milik enemy berbunyi/emit, jalankan func _on_enemy_killed yang ada di main.gd
 	enemy.killed.connect(
-	Callable(main, "_on_enemy_killed")
-)
+	Callable(main, "_on_enemy_killed"))
 
 	# Memberikan kecepatan sesuai difficulty saat ini.
 	enemy.speed = current_enemy_speed
